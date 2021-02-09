@@ -1,14 +1,14 @@
-import "./App.css";
+import "./App.scss";
 import { Router, Switch, Route } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/home/home";
 import { createBrowserHistory } from "history";
 import RedirectPage from "./pages/redirect";
 import { useEffect } from "react";
 import { getExpiryTime } from "./util";
-import Login from "./pages/login";
+import Login from "./pages/auth/login";
 import { getUserInfo } from "./services/user.service";
 import { useDispatch } from "react-redux";
-import Playlists from "./pages/playlists";
+import Playlists from "./pages/playlists/playlists";
 
 const history = createBrowserHistory();
 

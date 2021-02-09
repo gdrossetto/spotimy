@@ -12,6 +12,7 @@ export const getParamValues = (url) => {
 
 export const getAccessToken = () =>{
     const params = JSON.parse(localStorage.getItem('params'));
+    if(params)
     return params.access_token;
 }
 

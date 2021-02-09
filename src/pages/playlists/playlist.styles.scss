@@ -1,0 +1,38 @@
+
+.playlists{
+
+        text-align: center;
+        color: #1DB954;
+
+    
+    img{
+        display: block;
+        margin: auto;
+        width: 300px;
+        height: 300px;
+    }
+
+    &-list{
+        display: flex;
+        flex-wrap: wrap;
+        width: 1100px;
+        margin: auto;
+        justify-content: space-around;
+
+        @media screen and (max-width:768px) {
+            width: 100vw;
+        }
+    }
+
+    &-item{
+        width: 300px;
+        margin-bottom: 64px;
+        border: 2px solid #1DB954;
+        height: max-content;
+
+        &__name{
+            padding: 4px;
+        }
+    }
+    
+}
