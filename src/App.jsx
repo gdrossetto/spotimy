@@ -22,6 +22,7 @@ function App() {
   }
 
   useEffect(() => {
+
     if (currentDate < getExpiryTime()) {
 		setUser();
     	return;

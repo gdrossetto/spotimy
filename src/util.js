@@ -17,10 +17,10 @@ export const getAccessToken = () =>{
 }
 
 export const getExpiryTime = () =>{
-  const params = JSON.parse(localStorage.getItem('params'));
-  const currentDate = new Date().getTime();
-  if(params)
-  return params.expires_in * 1000 + currentDate;
+  const expires_in = JSON.parse(localStorage.getItem('expiry_time'));
+  if(expires_in)
+  console.log(expires_in)
+  return expires_in;
 
   return;
 }
