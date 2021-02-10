@@ -9,6 +9,7 @@ import Login from "./pages/auth/login";
 import { getUserInfo } from "./services/user.service";
 import { useDispatch } from "react-redux";
 import Playlists from "./pages/playlists/playlists";
+import Playlist from "./pages/playlist/playlist";
 
 const history = createBrowserHistory();
 
@@ -36,6 +37,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
 		<Route path="/playlists" component={Playlists} exact />
+        <Route path="/playlist/:id" component={Playlist} exact />
         <Route path="/login" component={Login} />
         <Route path="/redirect" component={RedirectPage} />
       </Switch>

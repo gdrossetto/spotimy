@@ -1,18 +1,24 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 import './home.styles.scss';
+
 const Home = () => {
 
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
 
-  return (
-    <div>
-      <h1>Welcome, {user?.display_name}</h1>
-      <button onClick={()=>{history.push('/playlists')}}>Minhas playlists</button>
-    </div>
-  );
+    return (
+        <div>
+            <div className={"page-header"}>
+                Welcome to SpotiMy, {user?.display_name}
+            </div>
+            <button onClick={() => {
+                history.push('/playlists')
+            }}>Minhas playlists
+            </button>
+        </div>
+    );
 };
 export default Home;

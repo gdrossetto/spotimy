@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getUserPlaylists } from "../../services/user.service";
-import './playlist.styles.scss';
+import './playlists.styles.scss';
+import { useHistory } from "react-router-dom";
 
 const Playlists = () => {
   const user = useSelector((state) => state.user);
   const [playlists, setPlaylists] = useState([]);
+  const history = useHistory();
 
   async function getPlaylists() {
     let myPlaylists = await getUserPlaylists();
-    console.log(myPlaylists);
     setPlaylists(myPlaylists.items);
   }
+
 
   useEffect(() => {
     getPlaylists();
@@ -19,11 +21,13 @@ const Playlists = () => {
 
   return (
     <div className="playlists">
-      {user?.id ? <h1>{user?.display_name}'s playlists:</h1> : null}
+      <div className={"page-header"}>
+        My playlists
+      </div>
       <div className="playlists-list">
       {playlists.map((item) => {
         return (
-          <div className="playlists-item" key={item.id}>
+          <div onClick={()=>history.push(`/playlist/${item.id}`)} className="playlists-item" key={item.id}>
             {item.images.length > 0 ? (
               <img src={item.images[0].url} alt="" />
             ) : null}
