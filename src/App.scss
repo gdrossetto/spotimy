@@ -2,8 +2,20 @@ body{
   background: black;
 }
 
+*{
+  box-sizing: initial !important;
+}
+
+.container{
+  width: 1100px;
+  margin: auto;
+  @media screen and (max-width: 768px) {
+    width: 90vw;
+  }
+}
+
 .page-header{
-  height: 250px;
+  min-height: 250px;
   background: #1DB954;
   color: black;
   font-size: 42px;
@@ -13,4 +25,15 @@ body{
   justify-content: center;
   align-items: center;
   margin-bottom: 64px;
+}
+
+
+.btn-green-outline{
+  border: 2px solid #1DB954;
+  color: #1DB954;
+
+  &:hover{
+    background: #1DB954;
+    color: black;
+  }
 }

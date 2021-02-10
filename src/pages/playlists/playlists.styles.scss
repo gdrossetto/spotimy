@@ -3,18 +3,11 @@
     text-align: center;
     color: #1DB954;
 
-    
-
     &-list{
         display: flex;
         flex-wrap: wrap;
-        width: 1100px;
-        margin: auto;
         justify-content: space-around;
 
-        @media screen and (max-width:768px) {
-            width: 100vw;
-        }
     }
 
     &-item{
@@ -24,15 +17,32 @@
         height: max-content;
 
         &__name{
-            padding: 4px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p{
+                margin: 1rem;
+                font-weight: bold;
+            }
         }
 
-        img{
-            display: block;
-            margin: auto;
+        &__image{
             width: 300px;
             height: 300px;
+
+            img{
+                width: 100% !important;
+                height: 100% !important;
+                display: block;
+            }
         }
     }
+
+    &-invisible{
+        width: 300px;
+        height: 0;
+    }
+
     
 }

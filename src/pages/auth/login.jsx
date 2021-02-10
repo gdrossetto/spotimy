@@ -13,8 +13,10 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login with Spotify</h1>
-      <button onClick={() => handleLogin()}>Login</button>
+      <div className={"page-header"}>
+        SpotiMy
+      </div>
+      <button className={"btn btn-green-outline d-block m-auto"} onClick={() => handleLogin()}>Login with Spotify</button>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const Playlist = () => {
             <div className={"page-header"}>
                 {playlist?.name}
             </div>
-            <div className={"playlist-tracks"}>
+            <div className={"playlist-tracks container"}>
                 {playlist.tracks ? playlist.tracks.items.map((track) => {
                     return (
                         <div key={track.track.id} className={"playlist-track"}>
