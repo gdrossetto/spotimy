@@ -3,7 +3,8 @@ import {useSelector} from "react-redux";
 import {getUserPlaylists} from "../../services/user.service";
 import './playlists.styles.scss';
 import {useHistory} from "react-router-dom";
-import PlaylistCard from "../../components/playlist-card.component";
+import PlaylistCard from "../../components/playlist-card/playlist-card.component";
+import PageHeader from "../../components/page-header/page-header.component";
 
 const Playlists = () => {
     const user = useSelector((state) => state.user);
@@ -22,9 +23,7 @@ const Playlists = () => {
 
     return (
         <div className="playlists">
-            <div className={"page-header"}>
-                My playlists
-            </div>
+            <PageHeader title={"My Playlists"}/>
             <div className="playlists-list container">
                 {playlists.map((item) => {
                     return (

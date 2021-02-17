@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './playlist-creator.styles.scss';
 import {searchArtistsByName} from "../../services/search.service";
+import PageHeader from "../../components/page-header/page-header.component";
 
 const PlaylistCreator = () => {
 
@@ -26,9 +27,7 @@ const PlaylistCreator = () => {
 
     return (
         <main className={"playlist-creator"}>
-            <div className={"page-header"}>
-                Playlist Creator
-            </div>
+            <PageHeader title={'Playlist Creator'} />
             <div className={"container"}>
                 <h3 className={"text-center"}>Select 5 artists</h3>
                 <div className="mt-5 d-flex">

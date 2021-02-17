@@ -5,12 +5,19 @@ import {getPlaylistById, getUserPlaylistTracks} from "../../services/user.servic
 import {getRecomendationsArtists} from "../../services/recomendations.service";
 import {createPlaylist} from "../../services/playlists.service";
 import {useSelector} from "react-redux";
+import Modal from "../../components/modal-input/modal-input.component";
+import Track from "../../components/track/track.component";
+import PageHeader from "../../components/page-header/page-header.component";
 
 const Playlist = () => {
-    const [playlist, setPlaylist] = useState({});
-    const [recomended, setRecomended] = useState([])
+
     let {id} = useParams();
     const user = useSelector(state => state.user);
+
+    const [playlist, setPlaylist] = useState({});
+    const [recomended, setRecomended] = useState([])
+    const [showModal, setShowModal] = useState(false);
+
     async function getPlaylist() {
         let playList = await getPlaylistById(id);
         console.log(playList)
@@ -49,37 +56,34 @@ const Playlist = () => {
 
     return (
         <div className={"playlist"}>
-            <div className={"page-header"}>
-                {playlist?.name}
-            </div>
+            <PageHeader title={playlist?.name}/>
             <div className={"playlist-tracks container"}>
                 {playlist.tracks ? playlist.tracks.items.map((track) => {
                     return (
-                        <div key={track.track.id} className={"playlist-track"}>
-                            <img src={track.track.album.images[0].url} alt=""/>
-                            <h3 className={"playlist-track__name"}>{track.track.name}</h3>
-                            <span className={"playlist-track__artist"}>{track.track.artists[0].name}</span>
-                        </div>
+                        <Track key={track.id} track={track.track}/>
                     )
                 }) : null}
-
             </div>
 
             <div className={"playlist-similar__header"}>
                 <div className={"py-4"}>
                     <h3 className={"green-h3 text-center my-4"}>Similar songs you may enjoy!</h3>
-                    <button onClick={()=>createPlaylist('Playlist Teste',user.id)} className={"btn btn-green-outline d-block m-auto"}>Generate Quick Playlist</button>
+                    <Modal
+                        show={showModal}
+                        onCancel={() => setShowModal(false)}
+                        onCreate={() => createPlaylist('Playlist Teste', user.id)}
+                    >
+                    </Modal>
+                    <button onClick={() => setShowModal(true)}
+                            className={"btn btn-green-outline d-block m-auto"}>Generate Quick Playlist
+                    </button>
                 </div>
             </div>
 
             <div className={"playlist-tracks container"}>
                 {recomended.tracks ? recomended.tracks.map((track) => {
                     return (
-                        <div key={track.id} className={"playlist-track"}>
-                            <img src={track.album.images[0].url} alt=""/>
-                            <h3 className={"playlist-track__name"}>{track.name}</h3>
-                            <span className={"playlist-track__artist"}>{track.artists[0].name}</span>
-                        </div>
+                        <Track key={track.id} track={track}/>
                     )
                 }) : null}
             </div>
