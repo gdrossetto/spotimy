@@ -15,7 +15,7 @@ body{
 }
 
 .page-header{
-  min-height: 250px;
+  min-height: 100px;
   background: #1DB954;
   color: black;
   font-size: 42px;
@@ -36,4 +36,12 @@ body{
     background: #1DB954;
     color: black;
   }
+}
+
+.green-h3{
+  color: #1DB954;
+}
+
+hr{
+  border-top: 2px solid #1DB954;
 }

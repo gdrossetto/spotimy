@@ -3,12 +3,14 @@ import './playlist.styles.scss';
 import {useParams} from 'react-router-dom';
 import {getPlaylistById, getUserPlaylistTracks} from "../../services/user.service";
 import {getRecomendationsArtists} from "../../services/recomendations.service";
+import {createPlaylist} from "../../services/playlists.service";
+import {useSelector} from "react-redux";
 
 const Playlist = () => {
     const [playlist, setPlaylist] = useState({});
-    const [recomended,setRecomended] = useState([])
+    const [recomended, setRecomended] = useState([])
     let {id} = useParams();
-
+    const user = useSelector(state => state.user);
     async function getPlaylist() {
         let playList = await getPlaylistById(id);
         console.log(playList)
@@ -31,7 +33,7 @@ const Playlist = () => {
         return artistsIds;
     }
 
-    async function getArtistsRecommended(){
+    async function getArtistsRecommended() {
         let rec = await getRecomendationsArtists(getPlaylistArtists());
         setRecomended(rec);
 
@@ -60,7 +62,17 @@ const Playlist = () => {
                         </div>
                     )
                 }) : null}
-                <h3>Other songs you may enjoy!</h3>
+
+            </div>
+
+            <div className={"playlist-similar__header"}>
+                <div className={"py-4"}>
+                    <h3 className={"green-h3 text-center my-4"}>Similar songs you may enjoy!</h3>
+                    <button onClick={()=>createPlaylist('Playlist Teste',user.id)} className={"btn btn-green-outline d-block m-auto"}>Generate Quick Playlist</button>
+                </div>
+            </div>
+
+            <div className={"playlist-tracks container"}>
                 {recomended.tracks ? recomended.tracks.map((track) => {
                     return (
                         <div key={track.id} className={"playlist-track"}>
@@ -71,7 +83,6 @@ const Playlist = () => {
                     )
                 }) : null}
             </div>
-
 
         </div>
     );

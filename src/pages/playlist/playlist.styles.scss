@@ -13,6 +13,14 @@
     margin-bottom: 64px;
   }
 
+  &-similar{
+
+    &__header{
+      border-top: 2px solid #1DB954;
+      border-bottom: 2px solid #1DB954;
+    }
+  }
+
   &-tracks{
     display: flex;
     flex-direction: column;

@@ -14,9 +14,13 @@ const Home = () => {
             <div className={"page-header"}>
                 Welcome to SpotiMy, {user?.display_name}
             </div>
-            <button className="btn btn-green-outline d-block m-auto" onClick={() => {
+            <button className="btn btn-green-outline d-block m-auto mb-4" onClick={() => {
                 history.push('/playlists')
-            }}>Minhas playlists
+            }}>My playlists
+            </button>
+            <button className="btn btn-green-outline d-block m-auto" onClick={() => {
+                history.push('/playlists/creator')
+            }}>Generate Playlist
             </button>
         </div>
     );

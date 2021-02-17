@@ -28,7 +28,7 @@ const Playlists = () => {
             <div className="playlists-list container">
                 {playlists.map((item) => {
                     return (
-                        <PlaylistCard playlist={item}/>
+                        <PlaylistCard key={item.id} playlist={item}/>
                     );
                 })}
                 <div className={"playlists-invisible"}></div>
