@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './playlist.styles.scss';
 import {useParams} from 'react-router-dom';
-import {getPlaylistById, getUserPlaylistTracks} from "../../services/user.service";
 import {getRecomendationsArtists} from "../../services/recomendations.service";
-import {addTracksToPlaylist, createPlaylist} from "../../services/playlists.service";
+import {addTracksToPlaylist, createPlaylist, getPlaylistById} from "../../services/playlists.service";
 import {useSelector} from "react-redux";
 import Modal from "../../components/modal-input/modal-input.component";
 import Track from "../../components/track/track.component";

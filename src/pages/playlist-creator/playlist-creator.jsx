@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './playlist-creator.styles.scss';
 import {searchArtistsByName} from "../../services/search.service";
 import PageHeader from "../../components/page-header/page-header.component";
+import {getUserTopArtists} from "../../services/user.service";
 
 const PlaylistCreator = () => {
 
@@ -15,10 +16,20 @@ const PlaylistCreator = () => {
         setArtists(artistsResults.artists.items);
     }
 
+    async function favoriteArtists() {
+        let artistsResults = await getUserTopArtists();
+        console.log(artistsResults)
+        setArtists(artistsResults.items);
+    }
+
     function pickArtist(artist) {
         if (artistPicks.length < 5)
             setArtistPicks([...artistPicks, artist]);
     }
+
+    useEffect(()=>{
+        favoriteArtists();
+    },[])
 
     useEffect(() => {
         console.log(artistPicks)
@@ -28,7 +39,7 @@ const PlaylistCreator = () => {
     return (
         <main className={"playlist-creator"}>
             <PageHeader title={'Playlist Creator'} />
-            <div className={"container"}>
+            <div className={"container mt-5"}>
                 <h3 className={"text-center"}>Select 5 artists</h3>
                 <div className="mt-5 d-flex">
                     <input type="search" value={search} onChange={(e) => setSearch(e.target.value)}

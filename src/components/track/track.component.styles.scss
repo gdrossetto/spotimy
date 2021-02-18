@@ -6,11 +6,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: 0.3s;
 
   &:hover{
     background: #1DB954;
     color: black;
-    transition: 0.5s;
+
 
     .playlist-track__name{
       color: black !important;

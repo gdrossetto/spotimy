@@ -1,0 +1,11 @@
+.playlists-item{
+  position: relative;
+
+  &__delete{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    border-radius: 50%;
+  }
+
+}

@@ -11,16 +11,20 @@ const Home = () => {
     const user = useSelector((state) => state.user);
 
     return (
-        <div>
+        <div className={"home"}>
             <PageHeader title={`Welcome to SpotiMy, ${user?.display_name}`}/>
-            <button className="btn btn-green-outline d-block m-auto mb-4 mt-5" onClick={() => {
-                history.push('/playlists')
-            }}>My playlists
-            </button>
-            <button className="btn btn-green-outline d-block m-auto" onClick={() => {
-                history.push('/playlists/creator')
-            }}>Generate Playlist
-            </button>
+            <div className={"home-buttons container"}>
+                <div className={"home-buttons__btn"} onClick={() => {
+                    history.push('/playlists')
+                }}>
+                    My Playlists
+                </div>
+                <div className={"home-buttons__btn"} onClick={() => {
+                    history.push('/playlists/creator')
+                }}>
+                    Playlist Generator
+                </div>
+            </div>
         </div>
     );
 };
