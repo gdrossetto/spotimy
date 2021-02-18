@@ -74,7 +74,7 @@ const Playlist = () => {
             <div className={"playlist-tracks container"}>
                 {playlist.tracks ? playlist.tracks.items.map((track) => {
                     return (
-                        <Track key={track.id} track={track.track}/>
+                        <Track key={track?.id} track={track.track}/>
                     )
                 }) : null}
             </div>
@@ -104,7 +104,7 @@ const Playlist = () => {
             <div className={"playlist-tracks container"}>
                 {recomended.tracks ? recomended.tracks.map((track) => {
                     return (
-                        <Track key={track.id} track={track}/>
+                        <Track key={track?.id} track={track}/>
                     )
                 }) : null}
             </div>
