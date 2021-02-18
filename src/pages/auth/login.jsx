@@ -9,14 +9,14 @@ const Login = () => {
   } = process.env;
 
   const handleLogin = () => {
-    window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&scope=${encodeURIComponent('playlist-card-modify-private playlist-card-modify-public')}
+    window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&scope=${encodeURIComponent('playlist-modify-private playlist-modify-public')}
 &redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=token&show_dialog=true`;
   };
 
   return (
     <div>
         <PageHeader title={'SpotiMy'} />
-      <button className={"btn btn-green-outline d-block m-auto"} onClick={() => handleLogin()}>Login with Spotify</button>
+      <button className={"btn btn-green-outline d-block m-auto mt-5"} onClick={() => handleLogin()}>Login with Spotify</button>
     </div>
   );
 };

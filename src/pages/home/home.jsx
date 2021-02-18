@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div>
             <PageHeader title={`Welcome to SpotiMy, ${user?.display_name}`}/>
-            <button className="btn btn-green-outline d-block m-auto mb-4" onClick={() => {
+            <button className="btn btn-green-outline d-block m-auto mb-4 mt-5" onClick={() => {
                 history.push('/playlists')
             }}>My playlists
             </button>
