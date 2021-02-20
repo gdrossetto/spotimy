@@ -9,34 +9,6 @@
         padding: 64px 0;
     }
 
-    &-item{
-        width: 300px;
-        margin-bottom: 64px;
-        border: 2px solid #1DB954;
-        height: max-content;
-
-        &__name{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            p{
-                margin: 1rem;
-                font-weight: bold;
-            }
-        }
-
-        &__image{
-            width: 300px;
-            height: 300px;
-
-            img{
-                width: 100% !important;
-                height: 100% !important;
-                display: block;
-            }
-        }
-    }
 
     &-invisible{
         width: 300px;

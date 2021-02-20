@@ -8,6 +8,8 @@ import Modal from "../../components/modal-input/modal-input.component";
 import {addTracksToPlaylist, createPlaylist} from "../../services/playlists.service";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
+import ArtistCard from "../../components/artist-card/artist-card.component";
+import Loading from "../../components/loading/loading.component";
 
 const PlaylistCreator = () => {
 
@@ -17,6 +19,7 @@ const PlaylistCreator = () => {
     const [showModal, setShowModal] = useState(false);
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const [generatedTracks,setGeneratedTracks] = useState({});
+    const [loading,setLoading] = useState(false);
 
     const user  = useSelector(state => state.user);
     const history = useHistory();
@@ -28,9 +31,11 @@ const PlaylistCreator = () => {
     }
 
     async function favoriteArtists() {
+        setLoading(true);
         let artistsResults = await getUserTopArtists();
         console.log(artistsResults)
         setArtists(artistsResults.items);
+        setLoading(false);
     }
 
     function pickArtist(artist) {
@@ -45,19 +50,23 @@ const PlaylistCreator = () => {
 
     async function getArtistsRecommended(artists) {
         if(artists.length>0) {
+            setLoading(true);
             const artistsIds = [];
             artists.forEach(artist => artistsIds.push(artist.id));
             let recommendedTracks = await getRecomendationsArtists(artistsIds);
             setGeneratedTracks(recommendedTracks);
+            setLoading(false)
         }
     }
 
     function createRelatedPlaylist(name, tracks) {
+        setLoading(true);
         setShowModal(false);
         createPlaylist(name, user.id).then((res) => {
             setNewPlaylistName('');
             addTracksToPlaylist(res.id, tracks).then((response) => {
                 if (response.snapshot_id) {
+                    setLoading(false);
                     history.push('/playlist/' + res.id);
                 }
             })
@@ -77,6 +86,7 @@ const PlaylistCreator = () => {
     return (
         <main className={"playlist-creator"}>
             <PageHeader title={'Playlist Creator'}/>
+            <Loading loading={loading}/>
             <Modal
                 show={showModal}
                 onCancel={() => setShowModal(false)}
@@ -117,10 +127,7 @@ const PlaylistCreator = () => {
                 <div className={"artists-list"}>
                     {artists?.map((artist) => {
                         return (
-                            <div key={artist.id} className={"artists-item"} onClick={() => pickArtist(artist)}>
-                                <img src={artist.images[0]?.url} alt=""/>
-                                <span>{artist?.name}</span>
-                            </div>
+                            <ArtistCard artist={artist} onPick={()=>pickArtist(artist)} />
                         )
                     })}
                     <div className={"artists-invisible"}></div>

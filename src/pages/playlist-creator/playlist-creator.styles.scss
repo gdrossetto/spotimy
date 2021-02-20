@@ -20,6 +20,10 @@
     display: flex;
     padding: 32px;
     justify-content: center;
+
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+    }
   }
 
   &-badge{
@@ -27,7 +31,6 @@
       width: 40px;
       height: 40px;
       border-radius: 20px;
-
     }
     position: relative;
     display: flex;
@@ -36,9 +39,16 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #1DB954;
+    background: #1DB954;
+    color: black;
+    font-weight: bold;
     padding: 8px;
     margin: 0 8px;
     border-radius: 20px;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 24px;
+    }
 
     &__delete{
       position: absolute;
@@ -46,28 +56,6 @@
       right: -15px;
       border-radius: 50%;
       font-size: 12px;
-    }
-  }
-
-  &-item{
-    width: 200px;
-    margin-bottom: 32px;
-    border: 1px solid #1DB954;
-    text-align: center;
-    overflow: hidden;
-    img{
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      transition: .8s;
-
-    }
-
-    &:hover{
-      cursor: pointer;
-      img{
-        transform: scale(1.3);
-      }
     }
   }
 
