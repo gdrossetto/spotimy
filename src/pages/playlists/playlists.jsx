@@ -6,21 +6,24 @@ import {useHistory} from "react-router-dom";
 import PlaylistCard from "../../components/playlist-card/playlist-card.component";
 import PageHeader from "../../components/page-header/page-header.component";
 import {unfollowPlaylist} from "../../services/playlists.service";
+import Loading from "../../components/loading/loading.component";
 
 const Playlists = () => {
     const user = useSelector((state) => state.user);
     const [playlists, setPlaylists] = useState([]);
+    const [loading,setLoading] = useState(false);
     const history = useHistory();
 
     async function getPlaylists() {
-        console.log('Pegando playlists')
+        setLoading(true);
         let myPlaylists = await getUserPlaylists();
         setPlaylists(myPlaylists.items);
+        setLoading(false);
     }
 
     async function deletePlaylist(playlistId){
+        setLoading(true);
        unfollowPlaylist(playlistId).then((response)=> {
-           console.log(response);
            getPlaylists()
        });
 
@@ -33,11 +36,12 @@ const Playlists = () => {
 
     return (
         <div className="playlists">
+            <Loading loading={loading}/>
             <PageHeader title={"My Playlists"}/>
             <div className="playlists-list container">
-                {playlists.map((item) => {
+                {playlists.map((item,index) => {
                     return (
-                        <PlaylistCard key={item.id} playlist={item} onUnfollow={() => deletePlaylist(item.id)}/>
+                        <PlaylistCard key={index} playlist={item} onUnfollow={() => deletePlaylist(item.id)}/>
                     );
                 })}
                 <div className={"playlists-invisible"}></div>

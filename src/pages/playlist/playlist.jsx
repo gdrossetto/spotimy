@@ -3,27 +3,33 @@ import './playlist.styles.scss';
 import {useParams} from 'react-router-dom';
 import {getRecomendationsArtists} from "../../services/recomendations.service";
 import {addTracksToPlaylist, createPlaylist, getPlaylistById} from "../../services/playlists.service";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../components/modal-input/modal-input.component";
 import Track from "../../components/track/track.component";
 import PageHeader from "../../components/page-header/page-header.component";
 import {useHistory} from "react-router-dom";
+import Loading from "../../components/loading/loading.component";
 
 const Playlist = () => {
 
     let {id} = useParams();
     const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const [playlist, setPlaylist] = useState({});
     const [recomended, setRecomended] = useState([])
     const [showModal, setShowModal] = useState(false);
     const [newPlaylistName, setNewPlaylistName] = useState('');
+    const [loading,setLoading] = useState(false);
+
 
     async function getPlaylist() {
+        setLoading(true);
         let playList = await getPlaylistById(id);
         console.log(playList)
         setPlaylist(playList);
+        setLoading(false);
     }
 
     function getPlaylistArtists() {
@@ -43,16 +49,20 @@ const Playlist = () => {
     }
 
     async function getArtistsRecommended() {
+        setLoading(true);
         let rec = await getRecomendationsArtists(getPlaylistArtists());
         setRecomended(rec);
+        setLoading(false);
     }
 
     function createRelatedPlaylist(name, tracks) {
+        setLoading(true);
         setShowModal(false);
         createPlaylist(name, user.id).then((res) => {
             setNewPlaylistName('');
             addTracksToPlaylist(res.id, tracks).then((response) => {
                 if (response.snapshot_id) {
+                    setLoading(false);
                     history.push('/playlist/' + res.id);
                 }
             })
@@ -70,11 +80,11 @@ const Playlist = () => {
     return (
         <div className={"playlist"}>
             <PageHeader title={playlist?.name}/>
-
+            <Loading loading={loading}/>
             <div className={"playlist-tracks container"}>
-                {playlist.tracks ? playlist.tracks.items.map((track) => {
+                {playlist.tracks ? playlist.tracks.items.map((track,index) => {
                     return (
-                        <Track key={track?.id} track={track.track}/>
+                        <Track key={index} track={track.track}/>
                     )
                 }) : null}
             </div>
@@ -102,9 +112,9 @@ const Playlist = () => {
                 : null}
 
             <div className={"playlist-tracks container"}>
-                {recomended.tracks ? recomended.tracks.map((track) => {
+                {recomended.tracks ? recomended.tracks.map((track,index) => {
                     return (
-                        <Track key={track?.id} track={track}/>
+                        <Track key={index} track={track}/>
                     )
                 }) : null}
             </div>

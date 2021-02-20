@@ -10,8 +10,13 @@ function shuffleArray(array) {
 }
 
 export async function getRecomendationsArtists(artists) {
+    let artistsFive = [];
     shuffleArray(artists)
-    let artistsFive = [artists[0],artists[1],artists[2],artists[3],artists[4]];
+    for(let i = 0; i < 5; i++){
+        if(artists[i]){
+            artistsFive.push(artists[i]);
+        }
+    }
 
     const playlistsFetch = await fetch(
         "https://api.spotify.com/v1/recommendations?seed_artists=" + artistsFive.join(),

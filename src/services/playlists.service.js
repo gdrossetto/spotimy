@@ -21,7 +21,7 @@ export async function createPlaylist(name,userId) {
 }
 
 export async function addTracksToPlaylist(playlistId,tracks) {
-
+    console.log(tracks)
     const tracksUris = [];
     tracks.forEach((track)=>{
         tracksUris.push(track.uri)

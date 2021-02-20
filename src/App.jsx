@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { getExpiryTime } from "./util";
 import Login from "./pages/auth/login";
 import { getUserInfo } from "./services/user.service";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Playlists from "./pages/playlists/playlists";
 import Playlist from "./pages/playlist/playlist";
 import PlaylistCreator from "./pages/playlist-creator/playlist-creator";
@@ -17,7 +17,6 @@ const history = createBrowserHistory();
 function App() {
   const currentDate = new Date().getTime();
   const dispatch = useDispatch();
-
   async function setUser() {
     const userData = await getUserInfo();
     dispatch({ type: "SET_USER", user: userData });
