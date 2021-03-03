@@ -1,13 +1,13 @@
-.modal{
+.modal {
   position: fixed;
   width: max-content;
   height: max-content;
   max-width: 80vw;
-  background: black;
-  border: 2px solid #1DB954;
-  color: #1DB954;
+  background: white;
+  border: 2px solid #560bad;
+  color: #560bad;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   border-radius: 20px;
 }

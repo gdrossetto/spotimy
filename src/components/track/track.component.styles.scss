@@ -1,52 +1,50 @@
-.playlist-track{
+.playlist-track {
   width: 100%;
-  background: black;
+  background: white;
   border-bottom: 1px solid grey;
   padding: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  transition: 0.3s;
+  transition: 0.5s;
 
-  &:hover{
-    background: #1DB954;
-    color: black;
+  &:hover {
+    background: #560bad;
+    color: white;
 
-
-    .playlist-track__name{
-      color: black !important;
+    .playlist-track__name {
+      color: white !important;
     }
 
-    .playlist-track__artist{
-      color: black !important;
+    .playlist-track__artist {
+      color: white !important;
     }
   }
 
-  &__name{
+  &__name {
     margin-right: 32px;
-    color: white;
+    color: black;
     font-size: 16px;
   }
 
-  &__artist{
-    color: grey;
+  &__artist {
+    color: #560bad;
     font-size: 12px;
   }
 
   @media screen and (max-width: 768px) {
-    &__name{
+    &__name {
       margin-right: 16px;
       font-size: 14px;
       margin-bottom: 0;
     }
 
-    &__artist{
+    &__artist {
       font-size: 14px;
     }
-
   }
 
-  img{
+  img {
     height: 30px;
     width: 30px;
     margin-right: 32px;

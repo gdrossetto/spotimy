@@ -1,8 +1,7 @@
-.playlist{
-
-  &-header{
+.playlist {
+  &-header {
     height: 250px;
-    background: #1DB954;
+    background: #560bad;
     color: black;
     font-size: 42px;
     text-align: center;
@@ -13,25 +12,25 @@
     margin-bottom: 64px;
   }
 
-  &-similar{
-
-    &__header{
-      border: 2px solid #1DB954;
+  &-similar {
+    &__header {
+      border: 2px solid #560bad;
+      border-radius: 20px;
     }
   }
 
-  &-tracks{
+  &-tracks {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0 8px;
-    outline: 2px solid #1DB954;
+    border: 2px solid #560bad;
     margin: 32px auto;
-    .title{
-      color: #1DB954;
+    border-radius: 20px;
+    overflow: hidden;
+    .title {
+      color: #560bad;
     }
   }
-
-
 }

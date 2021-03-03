@@ -1,19 +1,15 @@
+.playlists {
+  text-align: center;
+  color: #560bad;
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 64px 0;
+  }
 
-.playlists{
-    text-align: center;
-    color: #1DB954;
-    &-list{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 64px 0;
-    }
-
-
-    &-invisible{
-        width: 300px;
-        height: 0;
-    }
-
-    
+  &-invisible {
+    width: 300px;
+    height: 0;
+  }
 }
