@@ -35,6 +35,7 @@ const Playlists = () => {
   return (
     <div className="playlists">
       <Loading loading={loading} />
+      <h1>My Playlists</h1>
       <div className="playlists-list container">
         {playlists.map((item, index) => {
           return (
@@ -45,6 +46,7 @@ const Playlists = () => {
             />
           );
         })}
+        <div className={"playlists-invisible"}></div>
         <div className={"playlists-invisible"}></div>
         <div className={"playlists-invisible"}></div>
       </div>

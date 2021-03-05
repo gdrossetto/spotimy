@@ -5,6 +5,7 @@ body {
 
 * {
   box-sizing: initial !important;
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .container {
@@ -21,7 +22,7 @@ body {
 
   &:hover {
     background: #560bad;
-    color: black;
+    color: white;
   }
 }
 

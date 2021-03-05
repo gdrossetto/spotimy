@@ -10,7 +10,61 @@
   align-items: center;
 }
 
-nav {
+.navbar {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 16px !important;
+
+  &-brand{
+    margin-right: 64px;
+    color: #320269 !important;
+    font-weight: bold;
+  }
+
+  a{
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+    .nav-item{
+      color: #320269;
+      margin-right: 24px;
+      font-weight: bold;
+      border: 1px solid #560bad;
+      border-radius: 20px;
+      padding: 4px 12px;
+      transition: .3s;
+      position: relative;
+      text-align: center;
+
+      @media screen and (max-width: 768px) {
+        margin: 8px 0;
+      }
+      &:hover{
+        background: #560bad;
+        color: white;
+
+        .nav-submenu{
+          display: block;
+        }
+      }
+    }
+
+  .nav-submenu{
+    display: none;
+    position: absolute;
+    list-style: none !important;
+    padding-left: 32px !important;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    .nav-item{
+      margin: 8px 0 !important;
+      background: white;
+
+      &:hover{
+        background: #560bad;
+      }
+    }
+  }
 }

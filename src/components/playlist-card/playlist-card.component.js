@@ -14,9 +14,7 @@ const PlaylistCard = ({playlist,onUnfollow}) => {
                         <img src={playlist.images[0].url} alt=""/>
                     ) : null}
                 </div>
-                <div className="playlists-item__name">
-                    <p>{playlist.name}</p>
-                </div>
+                <span>{playlist.name}</span>
             </div>
             <button onClick={onUnfollow} className={"playlists-item__delete btn btn-danger"}>X</button>
         </div>

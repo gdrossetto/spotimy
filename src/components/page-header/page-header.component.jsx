@@ -4,10 +4,10 @@ import "./page-header.component.styles.scss";
 
 const PageHeader = ({ title }) => {
   return (
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo01"
@@ -15,34 +15,34 @@ const PageHeader = ({ title }) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="/">
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a className="navbar-brand" href="/">
             SpotiMy
           </a>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link to={"/"}>
-              <li class="nav-item">
-                <span class="nav-link active" aria-current="page">
+              <li className="nav-item">
                   Home
-                </span>
               </li>
             </Link>
             <Link to={"/playlists"}>
-              <li class="nav-item">
-                <span class="nav-link active" aria-current="page">
-                  Playlists
-                </span>
+              <li className="nav-item">
+                  My Playlists
               </li>
             </Link>
-            <Link to={"/playlists/creator"}>
-              <li class="nav-item">
-                <span class="nav-link active" aria-current="page">
+              <li className="nav-item">
                   Generator
-                </span>
+                <i className="fas fa-caret-down ms-2"></i>
+                <ul className={"nav-submenu"}>
+                  <Link to={"/playlists/creator"}>
+                    <li className="nav-item">
+                      By Artists
+                    </li>
+                  </Link>
+                </ul>
               </li>
-            </Link>
           </ul>
         </div>
       </div>
