@@ -1,13 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./home.styles.scss";
-import PageHeader from "../../components/page-header/page-header.component";
 
 const Home = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
 
   return (
     <div className={"home"}>

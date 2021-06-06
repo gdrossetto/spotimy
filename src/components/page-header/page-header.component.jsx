@@ -23,26 +23,20 @@ const PageHeader = ({ title }) => {
           </a>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link to={"/"}>
-              <li className="nav-item">
-                  Home
-              </li>
+              <li className="nav-item">Home</li>
             </Link>
             <Link to={"/playlists"}>
-              <li className="nav-item">
-                  My Playlists
-              </li>
+              <li className="nav-item">My Playlists</li>
             </Link>
-              <li className="nav-item">
-                  Generator
-                <i className="fas fa-caret-down ms-2"></i>
-                <ul className={"nav-submenu"}>
-                  <Link to={"/playlists/creator"}>
-                    <li className="nav-item">
-                      By Artists
-                    </li>
-                  </Link>
-                </ul>
-              </li>
+            <li className="nav-item">
+              Generator
+              <i className="fas fa-caret-down ms-2"></i>
+              <ul className={"nav-submenu"}>
+                <Link to={"/playlists/creator"}>
+                  <li className="nav-item">By Artists</li>
+                </Link>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

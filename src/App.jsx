@@ -17,6 +17,8 @@ const history = createBrowserHistory();
 
 function App() {
   const currentDate = new Date().getTime();
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   async function setUser() {
     const userData = await getUserInfo();
@@ -34,7 +36,7 @@ function App() {
 
   return (
     <Router history={history}>
-      <PageHeader />
+      {user.id ? <PageHeader /> : null}
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/playlists" component={Playlists} exact />
