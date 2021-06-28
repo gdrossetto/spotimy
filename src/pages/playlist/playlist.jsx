@@ -29,7 +29,6 @@ const Playlist = () => {
   async function getPlaylist() {
     setLoading(true);
     let playList = await getPlaylistById(id);
-    console.log(playList);
     setPlaylist(playList);
     setLoading(false);
   }

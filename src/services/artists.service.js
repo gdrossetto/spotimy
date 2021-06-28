@@ -1,18 +1,5 @@
 import { getAccessToken } from "../util";
-
-/* export async function getArtistTracks(artistName) {
-  const tracksFetch = await fetch(
-    `https://api.spotify.com/v1/search?type=track&q=artist:${artistName}`,
-    {
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    }
-  );
-  const tracksJson = await tracksFetch.json();
-  console.log(tracksJson);
-  return tracksJson;
-} */
+import { getNumberOfRandomElements } from "../util/functions";
 
 export async function getArtistAlbums(id) {
   const albumsFetch = await fetch(
@@ -52,5 +39,15 @@ export async function getRandomSongsFromArtist(artistId) {
       array.findIndex((t) => t.name === value.name) === index
   );
 
-  return totalSongs;
+  return getNumberOfRandomElements(20, totalSongs);
+}
+
+export async function getTracksFromSelectedArtists(artistIds) {
+  let tracks = [];
+  let artistTracks;
+  for (let i = 0; i < artistIds.length; i++) {
+    artistTracks = await getRandomSongsFromArtist(artistIds[i]);
+    tracks.push(...artistTracks);
+  }
+  return tracks;
 }

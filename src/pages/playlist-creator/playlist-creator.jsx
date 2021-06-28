@@ -13,7 +13,10 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ArtistCard from "../../components/artist-card/artist-card.component";
 import Loading from "../../components/loading/loading.component";
-import { getRandomSongsFromArtist } from "../../services/artists.service";
+import {
+  getRandomSongsFromArtist,
+  getTracksFromSelectedArtists,
+} from "../../services/artists.service";
 
 const PlaylistCreator = () => {
   const [search, setSearch] = useState("");
@@ -40,8 +43,6 @@ const PlaylistCreator = () => {
   }
 
   async function pickArtist(artist) {
-    const songsFromArtist = await getRandomSongsFromArtist(artist.id);
-    console.log(songsFromArtist);
     if (
       artistPicks.length < 5 &&
       artistPicks.findIndex((item) => item.id === artist.id) < 0
@@ -59,7 +60,8 @@ const PlaylistCreator = () => {
       setLoading(true);
       const artistsIds = [];
       artists.forEach((artist) => artistsIds.push(artist.id));
-      let recommendedTracks = await getRecomendationsArtists(artistsIds);
+      let recommendedTracks = await getTracksFromSelectedArtists(artistsIds);
+      //console.log(recommendedTracks);
       setGeneratedTracks(recommendedTracks);
       setLoading(false);
     }
@@ -93,9 +95,7 @@ const PlaylistCreator = () => {
       <Modal
         show={showModal}
         onCancel={() => setShowModal(false)}
-        onCreate={() =>
-          createRelatedPlaylist(newPlaylistName, generatedTracks.tracks)
-        }
+        onCreate={() => createRelatedPlaylist(newPlaylistName, generatedTracks)}
         onType={(e) => setNewPlaylistName(e)}
         value={newPlaylistName}
       ></Modal>

@@ -20,12 +20,10 @@ export async function createPlaylist(name, userId) {
 }
 
 export async function addTracksToPlaylist(playlistId, tracks) {
-  console.log(tracks);
   const tracksUris = [];
   tracks.forEach((track) => {
     tracksUris.push(track.uri);
   });
-  console.log(tracksUris);
 
   const playlistFetch = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
@@ -40,7 +38,6 @@ export async function addTracksToPlaylist(playlistId, tracks) {
     }
   );
   const playlistJson = await playlistFetch.json();
-  console.log(playlistJson);
   return playlistJson;
 }
 
