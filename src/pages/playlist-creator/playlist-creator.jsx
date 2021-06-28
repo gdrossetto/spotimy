@@ -33,8 +33,10 @@ const PlaylistCreator = () => {
   const history = useHistory();
 
   async function searchArtists() {
-    let artistsResults = await searchArtistsByName(search);
-    setArtists(artistsResults.artists.items);
+    if (search && search !== "") {
+      let artistsResults = await searchArtistsByName(search);
+      setArtists(artistsResults.artists.items);
+    }
   }
 
   async function favoriteArtists() {

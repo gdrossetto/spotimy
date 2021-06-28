@@ -24,6 +24,9 @@ h1 {
       font-size: 24px;
       font-weight: bold;
       transition: 0.5s;
+      @media screen and (max-width: 768px) {
+        width: 90%;
+      }
       &:hover {
         background: #560bad;
         color: white;
