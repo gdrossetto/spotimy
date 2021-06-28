@@ -37,3 +37,14 @@
     overflow: hidden;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .artists-item {
+    width: 80vw;
+
+    &__img {
+      height: 80vw;
+      width: 80vw;
+    }
+  }
+}

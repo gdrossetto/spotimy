@@ -1,0 +1,1 @@
+function getNumberOfRandomElements(number, array) {}

@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ArtistCard from "../../components/artist-card/artist-card.component";
 import Loading from "../../components/loading/loading.component";
+import { getRandomSongsFromArtist } from "../../services/artists.service";
 
 const PlaylistCreator = () => {
   const [search, setSearch] = useState("");
@@ -28,19 +29,19 @@ const PlaylistCreator = () => {
 
   async function searchArtists() {
     let artistsResults = await searchArtistsByName(search);
-    console.log(artistsResults.artists.items);
     setArtists(artistsResults.artists.items);
   }
 
   async function favoriteArtists() {
     setLoading(true);
     let artistsResults = await getUserTopArtists();
-    console.log(artistsResults);
     setArtists(artistsResults.items);
     setLoading(false);
   }
 
-  function pickArtist(artist) {
+  async function pickArtist(artist) {
+    const songsFromArtist = await getRandomSongsFromArtist(artist.id);
+    console.log(songsFromArtist);
     if (
       artistPicks.length < 5 &&
       artistPicks.findIndex((item) => item.id === artist.id) < 0
@@ -83,7 +84,6 @@ const PlaylistCreator = () => {
   }, []);
 
   useEffect(() => {
-    console.log(artistPicks);
     getArtistsRecommended(artistPicks);
   }, [artistPicks]);
 
@@ -100,7 +100,7 @@ const PlaylistCreator = () => {
         value={newPlaylistName}
       ></Modal>
       <div className={"container mt-5"}>
-        <div className={"col-8 m-auto"}>
+        <div className={"col m-auto"}>
           <h3 className={"text-center"}>Select up to 5 artists</h3>
           <div className="mt-5 d-flex playlist-creator__search">
             <input
@@ -116,7 +116,7 @@ const PlaylistCreator = () => {
               onClick={() => searchArtists()}
               className="btn btn-generate ms-2"
             >
-              <i class="fas fa-search me-1"></i>
+              <i className="fas fa-search me-1"></i>
               Search
             </button>
           </div>
@@ -146,14 +146,18 @@ const PlaylistCreator = () => {
           disabled={artistPicks.length > 0 ? false : true}
           className={"ml-5 btn btn-generate d-block ms-auto me-auto my-4"}
         >
-          <i class="fas fa-plus me-1"></i>
+          <i className="fas fa-plus me-1"></i>
           Generate playlist
         </button>
 
         <div className={"artists-list"}>
-          {artists?.map((artist) => {
+          {artists?.map((artist, index) => {
             return (
-              <ArtistCard artist={artist} onPick={() => pickArtist(artist)} />
+              <ArtistCard
+                artist={artist}
+                key={index}
+                onPick={() => pickArtist(artist)}
+              />
             );
           })}
           <div className={"artists-invisible"}></div>
