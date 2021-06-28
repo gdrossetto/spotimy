@@ -17,6 +17,7 @@ import {
   getRandomSongsFromArtist,
   getTracksFromSelectedArtists,
 } from "../../services/artists.service";
+import { shuffleArray } from "../../util/functions";
 
 const PlaylistCreator = () => {
   const [search, setSearch] = useState("");
@@ -24,6 +25,7 @@ const PlaylistCreator = () => {
   const [artistPicks, setArtistPicks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
+  const [tracksPerArtist, setTracksPerArtist] = useState(20);
   const [generatedTracks, setGeneratedTracks] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -61,7 +63,6 @@ const PlaylistCreator = () => {
       const artistsIds = [];
       artists.forEach((artist) => artistsIds.push(artist.id));
       let recommendedTracks = await getTracksFromSelectedArtists(artistsIds);
-      //console.log(recommendedTracks);
       setGeneratedTracks(recommendedTracks);
       setLoading(false);
     }
@@ -97,7 +98,7 @@ const PlaylistCreator = () => {
         onCancel={() => setShowModal(false)}
         onCreate={() => createRelatedPlaylist(newPlaylistName, generatedTracks)}
         onType={(e) => setNewPlaylistName(e)}
-        value={newPlaylistName}
+        onChangeAmmount={(e) => setTracksPerArtist(e)}
       ></Modal>
       <div className={"container mt-5"}>
         <div className={"col m-auto"}>

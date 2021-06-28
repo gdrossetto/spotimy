@@ -1,4 +1,5 @@
 import { getAccessToken } from "../util";
+import { shuffleArray } from "../util/functions";
 
 export async function createPlaylist(name, userId) {
   console.log("Criando Playlist");
@@ -15,11 +16,11 @@ export async function createPlaylist(name, userId) {
     }
   );
   const playlistJson = await playlistFetch.json();
-
   return playlistJson;
 }
 
 export async function addTracksToPlaylist(playlistId, tracks) {
+  shuffleArray(tracks);
   const tracksUris = [];
   tracks.forEach((track) => {
     tracksUris.push(track.uri);

@@ -27,7 +27,7 @@ export async function getAlbumsTracks(id) {
   return tracksJson;
 }
 
-export async function getRandomSongsFromArtist(artistId) {
+export async function getRandomSongsFromArtist(artistId, ammount) {
   const albums = await getArtistAlbums(artistId);
   let totalSongs = [];
   for (let i = 0; i < albums.length; i++) {
@@ -39,14 +39,17 @@ export async function getRandomSongsFromArtist(artistId) {
       array.findIndex((t) => t.name === value.name) === index
   );
 
-  return getNumberOfRandomElements(20, totalSongs);
+  return getNumberOfRandomElements(ammount, totalSongs);
 }
 
 export async function getTracksFromSelectedArtists(artistIds) {
   let tracks = [];
   let artistTracks;
   for (let i = 0; i < artistIds.length; i++) {
-    artistTracks = await getRandomSongsFromArtist(artistIds[i]);
+    artistTracks = await getRandomSongsFromArtist(
+      artistIds[i],
+      40 / artistIds.length
+    );
     tracks.push(...artistTracks);
   }
   return tracks;
